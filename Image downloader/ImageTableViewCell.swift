@@ -96,7 +96,6 @@ class ImageTableViewCell: UITableViewCell, URLSessionDownloadDelegate {
         }
     }
     
-    // MARK: read downloaded data
     func readDownloadedData(of url: URL) -> Data? {
         do {
             let reader = try FileHandle(forReadingFrom: url)
@@ -108,6 +107,7 @@ class ImageTableViewCell: UITableViewCell, URLSessionDownloadDelegate {
             return nil
         }
     }
+    
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         DispatchQueue.main.async {

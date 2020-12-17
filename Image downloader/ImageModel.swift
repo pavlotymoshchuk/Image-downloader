@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Image: Codable {
+struct Image {
     let url: String
     let imageName: String
     var percentsDownload: Float

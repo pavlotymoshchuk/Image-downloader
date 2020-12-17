@@ -21,7 +21,6 @@ class ImagesTableVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "CellReuseIdentifier")
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageTableViewCell", for: indexPath) as? ImageTableViewCell {
             let currentImage = imageArray[indexPath.row]
             if let imageData = currentImage.imageData {
@@ -29,7 +28,11 @@ class ImagesTableVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             } else {
                 cell.imageImageView.image = nil
             }
-            cell.imageDownloadButton.setTitle("Start downloading", for: .normal)
+            if currentImage.percentsDownload != 1 {
+                cell.imageDownloadButton.setTitle("Start downloading", for: .normal)
+            } else {
+                cell.imageDownloadButton.setTitle("Downloaded", for: .normal)
+            }
             cell.percentsLabel.text = String(Int(currentImage.percentsDownload*100)) + "%"
             cell.imageDownloadingProgressView.setProgress(currentImage.percentsDownload, animated: false)
             cell.currentIndex.text = String(indexPath.row)
