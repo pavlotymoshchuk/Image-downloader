@@ -55,7 +55,7 @@ class ImagesTableVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             vc.modalPresentationStyle = .popover
             vc.modalTransitionStyle = .crossDissolve
             if let imageData = imageArray[indexPath.row].imageData, let image = UIImage(data: imageData) {
-                vc.image = image
+                vc.image = (image,imageArray[indexPath.row].imageName)
                 UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
             }
         }

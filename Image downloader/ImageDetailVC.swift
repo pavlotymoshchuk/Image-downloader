@@ -13,12 +13,14 @@ import AudioToolbox
 class ImageDetailVC: UIViewController {
     
     @IBOutlet weak var fullImageView: UIImageView!
+    @IBOutlet weak var imageName: UILabel!
     
-    var image = UIImage()
+    var image = (UIImage(),String())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fullImageView?.image = image
+        fullImageView?.image = image.0
+        imageName.text = image.1
         fullImageView?.contentMode = .scaleAspectFit
     }
     
@@ -27,7 +29,7 @@ class ImageDetailVC: UIViewController {
     }
     
     @IBAction func saveToGalleryButton(_ sender: UIButton) {
-        UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+        UIImageWriteToSavedPhotosAlbum(image.0, self, nil, nil)
         alert(alertTitle: "Image saved", alertMessage: "Image was saved to photo library", alertActionTitle: "OK")
     }
     
